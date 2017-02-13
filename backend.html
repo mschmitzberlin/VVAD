@@ -1,0 +1,127 @@
+<!DOCTYPE html >
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulare</title>
+        
+        <link rel="stylesheet" type="text/css" media="screen" href="backend_style.css">
+        <script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/fileupload/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/md5-min.js" type="text/javascript" charset="utf-8"></script>	
+        <script src="js/backend.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <!--[if IE 6]>  
+        <p id="browser" style="display:none;">MSIE</p>
+        <![endif]-->  
+        <!--[if IE 7]>  
+        <p id="browser" style="display:none;">MSIE</p>
+        <![endif]-->
+        <!--[if eq IE 8]>  
+        <p id="browser" style="display:none;">MSIE</p>
+        <![endif]-->  
+        <div id="header">
+            <h1>Formular - Steuerung </h1>
+        </div>
+
+        <div id="content" style="display:none">
+            <div id="menu">
+                <ul>
+                    <li><a href="#nutzer">Nutzerverwaltung</a></li>
+                    <li><a href="#formdaten">Formulardaten</a></li>
+                </ul>
+            </div>
+
+            <div id="primary">
+                <div id="nutzer">
+                    <h2>Nutzerverwaltung</h2>
+                     <div class="container">
+                        <p> <input id="btnReloadUser" class="button" value="Anzeige aktualisieren">  </p>
+                        <select id="userlist"></select>
+                        <form id="frmUser">
+                            <p><input type="hidden" name="UserId" value=""></p>
+                            <p><input type="hidden" name="UserDel" value="false"></p>
+                            <p><input type="text" name="UserIdShow" disabled="disabled" value=""> Nutzer Id</p>
+                            <p><input type="text" name="Firstname" value=""> Vorname</p>
+                            <p><input type="text" name="Lastname" value=""> Nachname</p>
+                            <p><input type="text" name="Username" value=""> Nutzerame</p>
+                            <p><input type="text" name="Email" value=""> E-Mail</p>
+                            <select name="Group">
+                                <option value="1">Benutzer</option>
+                                <option value="10">Administrator</option>
+                            </select>Gruppe</br>
+                            <p><input type="checkbox" id="changePwd" value=""> Passwort ändern</p>
+                            <p><input type="password" name="Password" value="" disabled="disabled"> neues Passwort eingeben</p>
+                            <p><input type="password" name="Password_repeat" value="" disabled="disabled"> Passwort wiederholen</p>
+                        </form>
+
+                        <p> <input id="btnUserStore" class="button" value="&Auml;nderungen Speichern">  </p>
+                        <p> <input id="btnUserDel" class="button" value="Nutzer l&ouml;schen">  </p>
+                    </div>
+                </div>
+               
+                <div id="formdaten">
+                    <h2>Formulardaten</h2>
+                    <div class="container">
+                    <p><input id="btnReloadFormdaten" class="button" value="Anzeige aktualisieren">  </p>
+                    <p><select id="formDatenAuswahl"></select> Bogen ausw&auml;hlen</p>
+<!--                     <p><button type="button" id="btnFormDatenAkt" value="">Anzeige aktualisieren</button></p>-->   
+                    <table>
+                        <tr>
+                            <td>erfasst:</td>
+                            <td><span id="countSet"></span></td>
+                        </tr>
+                            <td>davon exportiert:</td>
+                            <td><span id="exportedSet"></span></td>
+                        </tr>
+                    </table>
+                    <div class= "tourimport_no">
+                        <p>Datenexport</p>
+                        <form id="frmFormCSV" class="form" action="php/csv_download.php" method="post" enctype="application/force-download">
+                            <input id="inputFormCSV_data" type="hidden" name="data">
+                            <input id="inputFormCSV_expKey" type="hidden" name="key">
+                            <input name="formid" type="hidden">
+                            <p>Welche Daten sollen exportiert werden?<p>
+                            <p><input name="export" type="radio" value="all" />Alle (auch bereits exportierte)</p>
+                            <p><input name="export" type="radio" value="new" checked="checked"/>Neue (noch nicht exportierte)</p>
+ <!--                           <p><input type="submit" value="Exportieren"></p>-->
+                            <p><button class="button" type="submit" value="">Exportieren</button></p>
+                        </form>
+                        <p><button class="button" type="button" id="btnFormDel" value="">Alle exportierten Daten l&ouml;schen  </button></p>                    
+                    </div>
+                </div>
+            </div>
+
+
+        
+            </div>
+            <div id="footer">
+                <input id="btnLogout" class="button" value="Abmelden">
+        </div>
+        </div>
+
+        <div id="overlay">
+            <div class="inner" align="center">
+                <p id=innerPText></p>
+                <button type="button" name="btnYes" value="Ja">Ja</button>
+                <button type="button" name="btnNo" value="Nein">Nein</button>
+            </div>
+        </div>
+        <div id="overlay_login" style="display: none;">
+            <p>Bitte melden Sie sich mit Administrator-Berechtigung an</p>
+                <form class="form" id="loginform">
+                    <p><input type="text" name="Username" value="Benutzername" id="username"></p>
+                    <p><input type="password" name="Password" value="passwort" id="password"></p>
+                    <p><input class="button" type="submit" value="Anmelden"></p>
+                </form>
+        </div>
+		<div id="overlay_wait">
+		    <div class="inner">
+           		<img src="img/wait.gif">
+			</div>
+		</div>
+        
+    </body>
+</html>
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>    
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<style>
+
+html,body{
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+    
+    #sidebar{  
+  position:relative;
+  overflow:hidden;
+  margin:0 auto;
+  background:#cf5;
+
+  height:100%;
+  white-space:nowrap;
+}
+#slides div{
+  position:relative;
+  display:inline-block;
+  margin-right:-4px;
+  white-space:normal;
+  vertical-align:top;
+  *display:inline;
+  background:#eee;
+  width:100%;
+  height:200px;
+}
+
+.menu {
+  position:relative;
+  display:inline-block;
+  margin-right:-4px;
+  white-space:normal;
+  vertical-align:top;
+  *display:inline;
+  background:#eee;
+  width:100%;
+  height:100%;
+     
+}
+
+
+.col-main {
+padding-left: 0px;
+padding-right: 0px;
+height: 100%;
+}
+</style>
+<script>
+    $(function(){
+  
+  var slideW = $('#slides').width();
+  $('#show-slide2').click(function( e ){
+    e.preventDefault();
+    $('#slides').animate({scrollLeft: slideW }, 600);
+  });
+  
+    
+  $('.sidebarsection a').click(function( e ){
+    var slideW = $('#sidebar').width();
+    var index = $( ".menu" ).index( $(this).parents(".menu") );
+	console.log("fire" ) ;
+	
+  //  slideW = slideW *(index+1);
+    e.preventDefault();
+    $('#sidebar').animate({scrollLeft: slideW }, 600, function () {   
+   console.log("animend" ) ;
+		});
+  });
+  
+});
+    
+</script>
+</head>
+<body>
+  
+  
+<!--
+<div id="slides">
+  <div>
+    Content 1
+    <a href="#" id="show-slide2">Show Content 2</a>
+  </div>
+  <div>
+    Content 2
+  </div>
+</div>-->
+
+<div class="row" style="height: 100%">
+    <div id="sidebar" class="col-md-3 hidden-xs col-main">
+				<div id="mainmenu" class="menu active">
+					<div class="page-header">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<a class="back" href="#searchmenu">Suche</a>
+					</div>
+					<div id="scrollmainmenu" class="scroll sidebarsection">
+						<div class="list-group">
+							<a class="list-group-item" href="#windowkundenuebersicht">Kundenübersicht</a>
+							<a class="list-group-item submenu" href="#kundendatenmenu">Kundendaten<span></span></a>
+							<a class="list-group-item" href="#windowumfeldanalyse">EH-Umfeldanalyse</a>
+							<a class="list-group-item" href="#windowfruehremi">Hitliste Frühremissionen</a>
+							<a class="list-group-item submenu" href="#topsellermenu">Übersicht Topseller<span></span></a>
+							<a class="list-group-item submenu" href="#sortimentmenu">Sortimentsanalyse<span></span></a>
+							<a class="list-group-item" href="#windownlferfassen">Nachlieferung erfassen</a>
+							<a class="list-group-item submenu" href="#formsmenu">Reports<span></span></a>
+							<a class="list-group-item" href="#windowlogout">Abmelden</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Submenü Ehastra	-->
+				<div id="ehastramenu" class="menu">
+					<div class="page-header">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<a class="back" href="#kundendatenmenu">Kundendaten</a>
+					</div>
+					<div id="scrollehastramenu" class="scroll sidebarsection">
+						<div class="list-group">
+							<a class="list-group-item" href="#windowshopdetails">Shop Details</a>
+							<a class="list-group-item" href="#windowvkwm">VK Hilfen / WM</a>
+							<a class="list-group-item" href="#windowregale">Daten / Regal / Sortiment</a>
+						</div>
+					</div>
+				</div>
+				<!-- Submenü Umfeldanalyse - dynamisch	-->
+				<div id="umfeldanalysemenu" class="menu">
+					<div class="page-header">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<a class="back" href="#mainmenu">Hauptmenü</a>
+					</div>
+					<div id="scrollumfeldanalysemenu" class="scroll sidebarsection">
+						<div class="list-group">
+							<a class="list-group-item" href="#windowshopdetails">Umfeld</a>
+						</div>
+					</div>
+				</div>
+                
+        
+        
+    </div>
+	<div id="menu-container">
+		
+	</div> 
+</div>
+  
+  
+  
+</body>
+</html>

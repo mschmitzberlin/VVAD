@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta robots="noindex,nofollow,noarchive">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="cache-control" content="no-store">
+	<meta http-equiv="cache-control" content="must-revalidate">
+	<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <meta http-equiv="expires" content="0">
+	<meta http-equiv="expires" content="Tue, 01 Jan 2013 12:00:00 GMT"> 
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>transitiontest</title>
+
+	<script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+</head>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    
+    $('#test').click (function() {
+        $('#d2').addClass("current"); 
+		$('#d2').addClass("leftoutright"); 
+
+	setTimeout(function(){
+         //
+         $('#d1').addClass("slideleftout");
+          $('#d1').addClass("leftoutleft");
+          
+        $('#d2').addClass("slideleftin");
+         $('#d2').addClass("leftnull");
+         
+         setTimeout(function(){
+            
+            $('#d1').removeClass("slideleftout");
+          $('#d1').removeClass("leftoutleft");
+           $('#d1').addClass("transparent");
+         
+          $('#d2').removeClass("slideleftin");
+         $('#d2').removeClass("leftnull");
+         $('#d2').removeClass("leftoutright");
+          $('#d2').removeClass("transparent"); 
+        },500); 
+           
+   
+            
+    },0); 
+           
+
+		return false;
+    })
+    
+    $('#test2').click (function() {
+      $('#d3').addClass("current"); 
+		$('#d3').addClass("leftoutleft"); 
+       $('#d3').addClass("width300"); 
+     //   $('#d2').addClass("transparent"); 
+		
+       
+	setTimeout(function(){
+        $('#d2').addClass("slideleftin");
+          $('#d2').addClass("leftoutright");
+        
+        
+        
+         //
+         $('#d3').addClass("slideleftout");
+          $('#d3').addClass("leftnull");
+
+        //   
+        setTimeout(function(){
+             $('#d2').addClass("transparent");
+             $('#d2').removeClass("current");
+             $('#d3').removeClass("transparent");
+                    $('#d2').removeClass("slideleftin");
+          $('#d2').removeClass("leftoutright");
+        
+        
+        
+         //
+         $('#d3').removeClass("slideleftout");
+          $('#d3').removeClass("leftnull");
+ 
+		$('#d3').removeClass("leftoutleft"); 
+       $('#d3').removeClass("width300"); 
+            
+             },1000); 
+            
+    },0); 
+           
+
+		return false;
+    })    
+
+	});
+</script>
+
+
+<style type="text/css" media="all">
+    
+html,body {
+	height:100%;
+}
+
+#page {
+	width:100%; height:100%;
+	position:relative;
+	display:-webkit-box;
+	display:-moz-box;
+	display:-o-box;
+	display:box;
+	
+	-webkit-box-orient:horizontal;
+	-moz-box-orient:horizontal;
+	-o-box-orient:horizontal;
+	box-orient:horizontal;
+	
+	background:white;
+}    
+    
+#sidebar, #content {
+	position:relative;
+	height:100%;
+}
+
+#sidebar {
+	width:300px;
+    z-index: 2;
+}
+
+#content {
+    left: 0px;
+    position: relative;
+    z-index: 10;
+    background-color: brown;
+}
+
+.menu {
+    position:absolute;
+	top:0px; bottom:0;
+    right:0;
+    left: 0;
+	font-size:15px;
+	z-index: 2;
+
+}
+.menu.transparent {
+    visibility: hidden;
+	
+}
+
+.menu.current {
+    visibility: visible;
+	
+}
+
+
+.slideleftin{
+transition:left 0.5s ease;
+-webkit-transition:left 0.5s ease; /* Safari */
+
+
+}
+
+
+.slideleftout{
+transition:margin-left 0.5s ease;
+-webkit-transition:margin-left 0.5s ease; /* Safari */
+
+
+}
+
+
+.leftoutright {
+    left:300px;
+}
+
+.leftoutleft {
+    margin-left:-300px;
+}
+
+.leftnull {
+    left:0px;
+    margin-left:0px;
+   
+  
+}
+
+.width300 {
+ width: 300px;
+  
+}
+
+
+#d1 {
+    background-color: blue;
+    z-index: 1;
+}
+
+
+#d2 {
+    background-color: green;
+}
+
+#d3 {
+    background-color: red;
+}
+</style>
+
+<body>
+    <div id="page">
+    <div id="sidebar">
+        <div id="d1">
+            div 1xxxxxxxxxxxxxxxxx
+        </div>
+        <div id="d2" class="menu transparent">
+            div 2yyyyyyyyyyyyyyy
+        </div>
+        <div id="d3" class="menu transparent">
+            div 3
+        </div>
+    </div>
+    
+    <div id="content">
+        content
+    vvvvvvvvvvvvvvvvvxxxxxxxxxvvvvvvvvvvvvvvvvvxxxxxxxxxxxxxxxxx <input type="button" id="test">
+    
+    <input type="button" id="test2">
+    </div>
+ </div>   
+</body>
+</html>

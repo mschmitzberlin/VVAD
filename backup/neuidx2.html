@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    	<meta charset="UTF-8">
+	<meta robots="noindex,nofollow,noarchive">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="cache-control" content="no-store">
+	<meta http-equiv="cache-control" content="must-revalidate">
+	<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <meta http-equiv="expires" content="0">
+	<meta http-equiv="expires" content="Tue, 01 Jan 2013 12:00:00 GMT"> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>    
+	<script src="js/md5-min.js" type="text/javascript" charset="utf-8"></script>	
+
+	<script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+    
+    <script src="js/application_nv.js" type="text/javascript" charset="utf-8"></script>
+    
+<title>iScroll demo: iOS Perfect Scrollbar</title>
+
+<link rel="stylesheet" type="text/css" href="js/iscroll/scrollbar.css">
+
+	<script type="application/javascript" src="js/iscroll.js"></script>
+
+
+<style type="text/css" media="all">
+html,body {
+	height:100%;
+}    
+    
+body,ul,li {
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+}
+
+.header {
+
+	top:0; left:0;
+	width:100%;
+	height:45px;
+	line-height:45px;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fe96c9), color-stop(0.05, #d51875), color-stop(1, #7b0a2e));
+	background-image:-moz-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	background-image:-o-linear-gradient(top, #fe96c9, #d51875 5%, #7b0a2e);
+	padding:0;
+	color:#eee;
+	font-size:20px;
+	text-align:center;
+}
+
+.header a {
+	color:#f3f3f3;
+	text-decoration:none;
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+}
+
+#footer {
+	position:absolute;
+	bottom:0; left:0;
+	width:100%;
+	height:48px;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+	background-image:-moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image:-o-linear-gradient(top, #999, #666 2%, #222);
+	padding:0;
+	border-top:1px solid #444;
+}
+
+.article {
+	position:absolute;
+	top:45px;
+	bottom:0px;
+
+	left:0;
+	width:100%;
+	background:#555;
+	/*overflow:auto;*/
+}
+
+#scroller {
+	position:relative;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+
+	float:left;
+	width:100%;
+	padding:0;
+}
+
+#scroller ul {
+	position:relative;
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
+
+#scroller li {
+	padding:0 10px;
+	height:40px;
+	line-height:40px;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #fff;
+	background-color:#fafafa;
+	font-size:14px;
+}
+
+#scroller li > a {
+	display:block;
+}
+
+.page {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+ 	display:-webkit-box;
+	display:-moz-box;
+	display:-o-box;
+	display:box;
+	
+	-webkit-box-orient:horizontal;
+	-moz-box-orient:horizontal;
+	-o-box-orient:horizontal;
+	box-orient:horizontal;
+	   
+
+
+		
+    
+}
+
+#sidebar {
+	width:300px;
+    z-index: 10;
+	/*margin-right:1px;*/
+
+}
+
+.content {
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-o-box-flex:1;
+	box-flex:1;
+    border-left: 1px solid black;
+    left: 0px;
+	z-index: 100;
+	
+
+}
+
+#sidebar, .content {
+	position:relative;
+	height:100%;
+}
+
+
+.window {
+/*  	position:relative; 
+	height:100%;	*/
+top: 0px;
+height: 100%
+    
+}
+.window.transparent {
+    visibility: hidden;
+    opacity: 0;
+     height:0px;
+}
+
+.window.current {
+    visibility: visible;
+    opacity: 1;
+    transition:opacity 0.5s;
+    -webkit-transition:opacity 0.5s; 
+}
+
+.menu {
+    position:absolute;
+	top:0px; bottom:0;
+    left: 0;
+    right:0;
+    height: 100%;
+	font-size:15px;
+	z-index: 1;
+
+}
+.menu.transparent {
+    visibility: hidden;
+	
+}
+
+.menu.current {
+    visibility: visible;
+	
+}
+
+.menu ul li  {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.menu ul li a.current {
+        background-color: lightgray;
+}
+       
+
+.menu ul li a {
+    text-decoration: none;
+    display: block;
+    color: black;
+    white-space: nowrap;
+    padding-left: 10px;
+
+}
+
+.slideleftin{
+transition:left 0.5s ease;
+-webkit-transition:left 0.5s ease; /* Safari */
+
+
+}
+
+
+.slideleftout{
+transition:margin-left 0.5s ease;
+-webkit-transition:margin-left 0.5s ease; /* Safari */
+
+
+}
+
+
+.leftoutright {
+    left:300px;
+}
+
+.leftoutleft {
+    margin-left:-300px;
+}
+
+.leftnull {
+    left:0px;
+    margin-left:0px;
+   
+  
+}
+
+.width300 {
+ width: 300px;
+  
+}
+
+
+.menu ul li  {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.menu ul li a.current {
+        background-color: lightgray;
+}
+       
+
+.menu ul li a {
+    text-decoration: none;
+    display: block;
+    color: black;
+    white-space: nowrap;
+    padding-left: 10px;
+
+}
+
+
+
+    
+#sidebar .slideleft {
+		left: 0px;
+		width: 300px;
+	-webkit-transition: left 2s ease;
+}
+
+
+#sidebar .slideright {
+
+		left: 0;
+			
+}
+
+
+
+#sidebar.portrait{
+
+width: 0px;
+ border-right: 1px solid black;
+z-index: 100;
+transition:width 0.5s;
+-webkit-transition:width 0.5s; /* Safari */
+
+     	background-color: white;
+			
+}
+
+#sidebar.portraitslideleft {
+	width: 300px;
+
+}
+
+#content.portrait {
+
+position: absolute;
+left: 0px;
+width: 100%;
+border-left: 0px;
+z-index: 20;
+
+			
+}
+.portaitheader {
+    display: none;
+}
+
+.overlay_wait {
+	display: none; /* modified via jQuery */
+	/* width + height set via jQuery */
+	/* position: absolute; */
+	position: fixed;
+	z-index: 110;
+	-webkit-box-sizing: content-box;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+
+.overlay_wait .inner {
+    position:absolute;
+    height:100px;
+    width:200px;
+    margin:-50px 0px 0px -100px;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+
+.overlay_wait .inner img {
+ margin: 10px;
+}
+
+
+#navScroller > li {
+	padding:0 10px;
+	border-bottom:1px solid #ccc;
+	height:40px; line-height:40px;
+}
+
+
+ input[type=text],input[type=password] {
+    display: block;
+    padding: 12px 10px;
+    -webkit-box-sizing: border-box;
+
+	border-radius: 8px;
+
+	box-shadow:inset 0 1px 1px rgba(0,0,0,.2);
+	
+	width:100%;
+	max-width:100%;
+	margin:0 auto .5em;
+	font-size: 22px;
+	border:1px solid #aaa!important;
+	background-color: white;
+ }
+ 
+p.center {
+	text-align:  center;
+}
+
+ button {
+	width: 7.7em;
+	padding: 10px 15px;
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: rgb(79,129,189);
+	border: solid 1px;
+ }
+ 
+ button:hover {
+	background-color: lightblue;
+ }
+ 
+.container {
+    background:white;
+	border-radius: 8px;	
+	margin: 10px; 
+    /*padding: 10px;*/
+ }
+ .container table {
+   border-collapse:collapse;
+ }
+
+table {
+     border-collapse:collapse;
+
+}
+ .container tr{
+  
+  border-bottom: 1px solid #000;
+  border-color: lightgray;
+ 
+}
+ .container table tr:last-child{
+    border-bottom: none;
+   
+}
+ .container td{
+
+   height: 40px;
+  
+}
+
+#contentScroller {
+    padding: 20px;
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+var kundenuebersichtScroller,
+	scrollNav;
+
+   
+    
+function loaded() {
+	//  
+	kundenuebersichtScroller = new iScroll('kundenuebersichtScroller');
+	navMainmenu = new iScroll('scrollmainmenu');
+	navMenu2 = new iScroll('scrollmenu2');
+
+    // Menus
+    
+    
+    // Windows
+   
+    sucheScroller = new iScroll('sucheScroller');
+	 sucheScroller.options.onBeforeScrollStart = function(e) {                
+        var target = e.target;
+
+        while (target.nodeType != 1) target = target.parentNode;
+        if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA'){
+            e.preventDefault();
+        }
+   }
+	
+	
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', loaded, false);
+
+</script>
+
+
+</head>
+<body>
+<div class="page">
+    	<div id="sidebar">
+            <div id="loginmenu" class="menu current">
+                <div class="header">
+                    <a class="portaitheader" href="#mainmenu">Hauptmenü</a>
+                    <span class="landscapeheader">Hauptmenü</span>
+                </div>
+                <div id="scrollmainmenu">
+    
+                    <ul id="navScroller">
+                        <li><a href="#windowlogout">Abmelden</a></li>
+                    </ul>
+                </div>    
+           </div>
+            
+         <div id="mainmenu" class="menu transparent">
+            <div class="header">
+                <a class="portaitheader" href="#mainmenu">Hauptmenü</a>
+                <span class="landscapeheader">Hauptmenü</span>
+            </div>
+            <div id="scrollmainmenu">
+
+            	<ul id="navScroller">
+	                    <li><a href="#windowkundenuebersicht">Kundenübersicht</a></li>
+                        <li><a class="submenu" href="#kundendaten">Kundendaten</a></li>
+	                    <li><a href="#windowkundenprofil">Kundenprofil</a></li>
+						<li><a href="#map">EH-Umfeldanalyse</a></li>
+	                    <li class="arrow"><a href="#fruehremi">Hitliste Frühremissionen</a></li>
+	                    <li class="arrow"><a href="#top-ztg">Übersicht Topseller Zeitungen</a></li>
+	                    <li class="arrow"><a href="#top-zts">Übersicht Topseller Zeitschriften</a></li>
+	                    <li class="arrow"><a href="#sort-ztg">Sortimentsanalyse Zeitungen</a></li>
+	                    <li class="arrow"><a href="#sort-zts">Sortimentsanalyse Zeitschriften</a></li>
+	                    <li name = "nachlieferung" class="arrow"><a href="#nachlieferung">Nachlieferung erfassen</a></li>
+	                    <li name = "kundenstammerfassung" class="arrow"><a href="#kundenstammerfassung">Kundenstammerfassung</a></li>
+                        <li><a href="#menu2">Menu 2</a></li>
+            	</ul>
+            </div>    
+
+        </div>
+        <div id="kundendaten" class="menu transparent">
+            <div class="header">
+                 <a class="portaitheader" href="#kundendaten">Kundendaten 2</a>
+                 <span class="landscapeheader">
+                    Kundendaten
+                    <a class="back" href="#mainmenu">< Zurück</a>
+                </span>
+            </div>
+            <div  id="scrollmenu2">
+
+            	<ul id="navScroller">
+            		<li><a href="#belieferungszeiten">Belieferungszeiten</a></li>
+                    <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
+            	</ul>
+                
+            </div>   
+
+        </div>           
+            
+            
+            
+        </div>
+    <div class="content">   
+        <div class="window">
+            <div class="header">
+                Anmelden
+            </div>
+            <div class="article" id="loginScroller">
+                <div id="scroller">
+                    <div id="contentScroller">
+                        bitte Anmelden
+                        <p class="center"><button id="btnLogin">Anmelden</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="window transparent" id="windowsuche">
+            <div class="header">
+              Suche
+            </div>
+    		<div class="article" id="sucheScroller">
+    			<div id="contentScroller">
+                    <div class="container">
+ 					<p class="center">Willkommen.</p>
+                    	<p class="center">Willkommen.</p>
+
+    				<input type="text" id="txtsearchCustomer">
+
+					<p class="center">Bitte geben Sie Kundennummer, Name oder Strasse ein.</p>
+					<ul id = "search_list" class="edit rounded" style="display: none"></ul>
+					<p class="center"><button id="btnSearchCustomer">Finden</button></p>
+					</div>
+     			</div>
+                
+        	</div>
+        </div>        
+
+        <div class="window transparent" id="windowkundenuebersicht">
+            <div class="header">
+              Kundenübersicht
+            </div>
+    		<div class="article  wintest" id="kundenuebersichtScroller">
+    			<div id="contentScroller">
+                 <div class="container">
+                        <table>
+                            <tr>
+                                <td>Anschrift</td>
+                                <td>EH-Daten</td>
+                                <td>AD..</td>
+                            </tr>
+                        </table>
+							<div class="customer-key-data_left">
+                                                        div
+								<span name="var_vorname" class="var_vorname"></span>
+								<span name="var_nachname" class="var_nachname"></span></br>
+								<span name="var_strasse" class="var_strasse"></span></br>
+								<span name="var_plz" class="var_plz"></span>
+								<span name="var_ort" class="var_ort"></span>
+							</div>
+							<div class="customer-key-data_right">
+								<span name="var_email" class="var_email"></span></br>
+								<span name="var_telefon" class="var_telefon"></span></br>
+								<span name="var_telefon2" class="var_telefon2"></span></br>
+							</div>
+                            
+                        
+                    </div>
+                    <div class="container">
+                      <span name="var_kundenuebersicht"></span>
+                      <input type="text">
+                    </div>
+      			</div>
+
+        	</div>
+        </div>        
+        
+        
+        
+    </div>
+</div>
+</body>
+</html>

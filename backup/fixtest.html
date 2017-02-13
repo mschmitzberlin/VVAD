@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>fixed</title>
+    
+    <style>
+        
+.f1 {
+    position: fixed;
+    background-color: green;
+    top: 20px;
+    left: 30px;
+    width: 200px;
+    height: 200px;
+    z-index: 10;
+    
+}
+    
+.f2 {
+    
+    position: fixed;
+    background-color: red;
+    top: 40px;
+    left: 0px;
+    width: 300px;
+    height: 500px;
+    ;
+    z-index: 1;
+          -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease-out;
+      transition: all 0.5s ease-out;
+    
+    
+}
+  .f2:hover {
+      left:300px;
+      width: 10px;
+    }
+        
+    </style>
+</head>
+
+<body>
+
+
+<div class="f2">
+    bla
+    
+</div>
+
+<input type="checkbox" value="1">
+
+</body>
+</html>

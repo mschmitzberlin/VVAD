@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://vvberlin-online.de/soap/foodservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://vvberlin-online.de/soap/foodservice">
+<types>
+<xsd:schema targetNamespace="http://vvberlin-online.de/soap/foodservice"
+>
+ <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+ <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+</xsd:schema>
+</types>
+<message name="food.getFoodRequest">
+  <part name="type" type="xsd:string" /></message>
+<message name="food.getFoodResponse">
+  <part name="return" type="xsd:string" /></message>
+<portType name="foodservicePortType">
+  <operation name="food.getFood">
+    <documentation>Get food by type</documentation>
+    <input message="tns:food.getFoodRequest"/>
+    <output message="tns:food.getFoodResponse"/>
+  </operation>
+</portType>
+<binding name="foodserviceBinding" type="tns:foodservicePortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="food.getFood">
+    <soap:operation soapAction="http://www.greenacorn-websolutions.com/foodservice#getFood" style="rpc"/>
+    <input><soap:body use="encoded" namespace="http://www.greenacorn-websolutions.com/foodservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="http://www.greenacorn-websolutions.com/foodservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+</binding>
+<service name="foodservice">
+  <port name="foodservicePort" binding="tns:foodserviceBinding">
+    <soap:address location="http://vvberlin-online.de/TEST/VVAD/php/food.php"/>
+  </port>
+</service>
+</definitions>

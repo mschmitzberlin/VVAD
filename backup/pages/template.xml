@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<templates>
+<template name="var_knd_alz">
+        <h2 class="caption_var_knd_alz">Anlieferungszeiten</h2>
+	<span name="var_knd_alz" class="var_knd_alz"></span>
+</template>
+<template name="var_open">
+        <h2 class="caption_var_open">Öffnungszeiten</h2>
+	<span name="var_open" class="var_open"></span>
+</template>
+<template name="var_topseller_ztg">
+        <h1>Übersicht Topseller Zeitungen</h1>
+    	<div name ="div_toggle_row">
+    	<p class="serif toggle-wrapper"><span class="toggle"><input type="checkbox" name ="cb_toggle_row"value="6,7"></span><br>
+	Umsatz/Absatz anzeigen/verbergen</p>
+	<span name="var_topseller_ztg" class="var_topseller_ztg"></span>
+	</div>
+</template>
+<template name="var_topseller_ztschr">
+        <h1>Übersicht Topseller Zeitschriften</h1>
+    	<div name ="div_toggle_row">
+    	<p class="serif toggle-wrapper"><span class="toggle"><input type="checkbox" name ="cb_toggle_row"value="6,7"></span><br>
+	Umsatz/Absatz anzeigen/verbergen</p>
+	<span name="var_topseller_ztschr" class="var_topseller_ztschr"></span>
+	</div>
+</template>
+<template name="var_f_remi_avk">
+    	 <h2 class="caption_var_f_remi_avk">Frühremission mit Ausverkauf; nur Verkaufsverluste</h2>
+	<span name="var_f_remi_avk" class="var_f_remi_avk"></span>
+</template>
+<template name="var_f_remi_komplett">
+	<h2 class="caption_var_f_remi_komplett">Frühremission komplett; nur Verkaufsverluste</h2>
+	<span name="var_f_remi_komplett" class="var_f_remi_avk"></span>
+</template>
+<template name="var_profil">
+    <div name= "div_load_document">
+	<p><a name="btn_load_document" class="whiteButton" href="http://docs.google.com/viewer?url={url}">Kundenprofil anzeigen</a></p>
+        <span name = "var_profil" style="display:none"></span>
+        <iframe width="600" height="780" style="border: none;"></iframe>
+    </div>
+</template>
+<template name="var_tprofil">
+    <div name= "div_load_document">
+	<p><a name="btn_load_document" class="whiteButton" href="http://docs.google.com/viewer?url={url}">Titelprofil anzeigen</a></p>
+        <span name = "var_tprofil" style="display:none"></span>
+	
+	    <iframe width="600" height="780" style="border: none;"></iframe>
+	
+    </div>
+</template>
+<template name="var_nachlieferung_sic">
+    <div name= "div_load_document">
+	<p><a name="btn_load_document" class="whiteButton" href="http://www.pressehandel-berlin.de/silence_login.php?K={url}">Nachlieferung online bestellen</a></p>
+        <span name = "var_nachlieferung" style="display:none"></span>
+        <iframe width="600" height="780" style="border: none;"></iframe>
+    </div>
+</template>
+<template name="var_sortiment_ztg">
+    <h1>Sortimentsanalyse Zeitungen</h1>
+    <span name="var_sortiment_ztg" class="var_sortiment_ztg"></span>
+</template>
+<template name="var_sortiment_ztschr">
+	<h1>Sortimentsanalyse Zeitschriften</h1>
+	<span name="var_sortiment_ztschr" class="var_sortiment_ztschr"></span>
+</template>
+<template name="var_epanr">
+        <div name ="div_toggle_row">
+    	<p class="serif toggle-wrapper"><span class="toggle"><input type="checkbox" name ="cb_toggle_row"value="1"></span><br></p>
+	<span name="var_epanr" class="var_epanr"></span>
+	</div>
+</template>
+<template name="var_wm">
+	<h1>Werbemittel</h1>
+	<span name="var_wm" class="var_wm"></span>
+</template>
+</templates>

@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+<script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+<style>
+    #left-menu { 
+   position:absolute;
+   z-index:1;
+   width:100%;
+   height:700px;
+   background:brown;  
+}
+
+#content { 
+   position: absolute;
+   top:0px;
+   z-index:2;
+   width:100%;
+   height:700px;
+   background:green;   
+   -webkit-box-shadow: -2px 3px 5px rgba(50, 50, 50, 1);
+   -moz-box-shadow:    -2px 3px 5px rgba(50, 50, 50, 1);
+   box-shadow:         -2px 3px 5px rgba(50, 50, 50, 1);
+   
+}
+
+#little-content { 
+   margin-left:50px;
+  margin-top:50px;
+   width:150px;
+   height:150px;
+     background:blue;   
+     -webkit-box-shadow: -2px 3px 5px rgba(50, 50, 50, 1);
+   -moz-box-shadow:    -2px 3px 5px rgba(50, 50, 50, 1);
+   box-shadow:         -2px 3px 5px rgba(50, 50, 50, 1);
+   
+}
+</style>
+<script>
+ 
+$(function() { 
+ 	var contentToggle = 0; 
+
+	$('#content').on('click', function() { 
+		
+		if (contentToggle == 0) { 
+			$('#content').animate({
+				marginLeft: '40%',
+        width:'60%'
+			})  
+ 
+			contentToggle = 1; 
+		}
+		else if (contentToggle == 1) {
+			$('#content').animate({
+				marginLeft: 0,
+        width:'100%'
+			}) 
+			contentToggle = 0; 
+		}
+	  
+	}) 
+})
+   
+    
+</script>
+</head>
+<body>
+
+<div id='left-menu'>
+</div>
+  
+ 
+<div id='content'>
+   <div id='little-content'>
+ 
+  </div>
+</div>
+
+ 
+</body>
+</html>

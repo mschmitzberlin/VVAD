@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>test</title>
+    <script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+    
+    
+    
+    <script type="text/javascript">
+        function soap() {
+            
+            
+		varUrl = 'php/StringLengthClient.php';
+
+    	$.ajax({
+            
+                        type: 'POST',
+            dataType: 'text',
+            url: varUrl,
+            success: function(xml) {
+                console.log(xml);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+			console.log (" error " + textStatus);
+			console.log (XMLHttpRequest);
+
+			} 
+        }); // end ajax
+    }
+        
+    </script>
+</head>
+<body>
+    <form name="Demo" action="" method="post">
+        <div>
+            <input type="button" value="Soap" onclick="soap();" />
+        </div>
+    </form>
+</body>
+<html>

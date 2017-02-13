@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    	<meta charset="UTF-8">
+	<meta robots="noindex,nofollow,noarchive">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="cache-control" content="no-store">
+	<meta http-equiv="cache-control" content="must-revalidate">
+	<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <meta http-equiv="expires" content="0">
+	<meta http-equiv="expires" content="Tue, 01 Jan 2013 12:00:00 GMT">
+    <script type="application/javascript" src="js/iscroll.js"></script>
+    <script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.zoomooz.min.js"></script> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Page Title</title>
+    <style>
+        
+html,body {
+	height:100%;
+    width: 100%;
+}
+        
+table {
+     border-collapse:collapse;
+
+}
+tr{
+   /* border-bottom: solid 1px black;*/
+  border-bottom: 1px solid #000; 
+}
+table tr:last-child{
+    border-bottom: none;
+   
+}
+
+#id1 {
+    position: fixed;
+    left:0px;
+    height: 500px;
+    width:250px;
+    background-color: green;
+    overflow: hidden;
+
+}
+/*#id1:hover {
+    clip: rect( 0px, 700px, 500px, 400px);
+}
+*/
+
+
+#id2 {
+    position: absolute;
+    left:210px;
+    width: 200px;
+    background-color: red;
+        height: 300px;
+        	transition:all 0.5s ease;
+	-webkit-transition:all 0.5s ease; /* Safari */
+    
+}
+#id2:hover {
+    left: 0px;
+}
+
+#id3 {
+    
+        position: fixed;
+    left:0px;
+    width:300px;
+
+    background-color: blue;
+
+    
+}
+
+#container { overflow: auto; -webkit-overflow-scrolling: touch; height: 500px; }
+      object { width: 500px; height: 1000px }
+
+
+#pdfVewerWrapper {
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+        background-color: red;
+    -webkit-overflow-scrolling: touch;
+     
+}
+
+#pdfVewer {
+    margin: 0;
+    padding: 0;
+       height: 3300px;
+    width: 100%;
+   -webkit-transform: scale(1.2);
+		
+
+
+}   
+
+#test {
+    width: 1010px;
+    background-color: red;
+}
+
+
+#img {
+    width: 136px;
+    
+}
+
+
+</style>
+    <script>
+        
+        
+$(document).ready(function() {
+    //alert (window.screen.width);
+    //alert  (window.screen.height);
+    //alert($("#img").height());
+     $("pdfVewer").load(function() {
+        alert($(this).height());
+        alert($(this).width());
+    })
+ //$("#pdfVewer").load(function() { alert($("#pdfVewer").contents().height()); });
+ //$("#pdfVewer").css("-webkit-transform", "scale(0.8)");    
+// $('#pdfVewer').css({
+//    '-moz-transform': 'scale(0.97)',
+//    '-webkit-transform': 'scale(0.97)',
+//});       
+        
+   });        
+    </script>
+    
+</head>
+
+<body>
+
+	
+ <div id="pdfVewerWrapper">
+
+    <embed id="pdfVewer" src="documents/10007_K_PROFIL.PDF">
+</div>
+<!--    <iframe id="pdfVewer" src="documents/10006_K_PROFIL.PDF"></iframe>-->
+</body>
+</html>

@@ -1,0 +1,177 @@
+@charset 'UTF-8';
+
+/** =i4PoS2go
+-------------------------------------------------------------- 
+	
+	Main CSS stylesheet
+	
+	@author Caspar Huebinger
+	@credits Main page layout and animations from jqtouch.css,
+			 http://jqtouch.com, by David Kaneda
+	
+*/
+
+
+/* =Utility
+-------------------------------------------------------------- */
+
+.clear {clear:both;}
+.hidden {display:none;}
+.invisible {visibility:hidden;}
+.hidden-text {text-align:left;text-indent:-9999px;}
+.screen-reader-text {position: absolute;left: -9000em;}
+.small {font-size:0.9em;}
+.left {text-align:left;}
+.right {text-align:right;}
+.center {text-align:center;}
+.serif {font-family:Georgia,serif;font-style:italic;}
+.monospace {font-family: 'Courier New', Courier, monospace;}
+.alignleft {float:left;}
+.alignright {float:right;}
+
+
+/* =Orientation
+-------------------------------------------------------------- */
+
+.landscape .primary {
+	-webkit-box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	padding-top: 190px;
+	display: block !important;
+	width:256px;
+}
+
+.landscape .secondary{
+	-webkit-box-sizing: border-box;
+	position: relative;
+	top: 0;
+	left: 256px;
+	width: 768px;
+	min-height: 100%; 
+}
+
+.portrait .primary {
+	-webkit-box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	padding-top: 190px;
+	width: 100%;
+}
+
+.portrait .secondary{
+	-webkit-box-sizing: border-box;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+}
+
+.portrait .generic,
+.landscape .generic {
+	-webkit-box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+}
+
+
+/* =Layout
+-------------------------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+
+#i4p {
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    bottom: 0;
+    font-family: 'Helvetica Neue', Helvetica;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#i4p .selectable, #i4p input, #i4p textarea {
+    -webkit-user-select: auto;
+}
+
+#i4p.notransform {
+    -webkit-transform: none !important;
+}
+
+#i4p #hgroup {
+    -webkit-box-sizing: border-box;
+    left: 0;
+    height: 190px;
+    overflow-x: hidden;
+    position: fixed;
+    z-index: 110;
+    width: 100%;
+    display: none;
+}
+
+#i4p #content {
+	-webkit-box-sizing: content-box;
+    left: 0;
+    min-height: 100%;
+    padding-top: 190px;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+#i4p #content > *,
+#i4p .generic {
+    -webkit-box-sizing: border-box;
+   /* display: none; 
+    overflow-x: hidden;*/
+}
+.overlay_wait {
+	display: none; /* modified via jQuery */
+	/* width + height set via jQuery */
+	/* position: absolute; */
+	position: fixed;
+	z-index: 110;
+	-webkit-box-sizing: content-box;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+
+.overlay_wait .inner {
+    position:absolute;
+    height:100px;
+    width:200px;
+    margin:-50px 0px 0px -100px;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+
+.overlay_wait .inner img {
+ margin: 10px;
+}
+
+

@@ -1,0 +1,309 @@
+html,body {
+	height:100%;
+}
+
+body,ul,li,header,nav,aside,section,article,p {
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+	
+}
+
+p {
+	margin-bottom:1.5em;
+	line-height:150%;
+}
+
+header,nav,aside,section,article {
+	display:block;
+}
+
+.page {
+	width:100%; height:100%;
+	position:relative;
+	display:-webkit-box;
+	display:-moz-box;
+	display:-o-box;
+	display:box;
+	
+	-webkit-box-orient:horizontal;
+	-moz-box-orient:horizontal;
+	-o-box-orient:horizontal;
+	box-orient:horizontal;
+	
+	background:white;
+		
+}
+
+#sidebar {
+	width:300px;
+    z-index: 10;
+	/*margin-right:1px;*/
+}
+
+.content {
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-o-box-flex:1;
+	box-flex:1;
+    border-left: 1px solid black;
+    left: 0px;
+	z-index: 100;
+	
+
+}
+
+#sidebar, .content {
+	position:relative;
+	height:100%;
+}
+
+header {
+	top: 0px;
+	height:43px; line-height:43px;
+	border-bottom:1px solid #838a9a;
+	
+	color:white;
+	font-size:18px; font-weight:bold;
+	text-align:center;
+
+background-color: rgb(79,129,189);
+}
+
+header a {
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+    left: 10px;
+    
+}
+#navScroller > li {
+	padding:0 10px;
+	border-bottom:1px solid #ccc;
+	height:40px; line-height:40px;
+}
+
+#contentScroller {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	padding: 20px;
+
+	
+}
+
+nav, article {
+	position:absolute;
+	top:44px; bottom:0; left:0; right:0;
+	font-size:15px;
+	background:rgb(242,242,242);
+
+}   
+
+.menu {
+    position:absolute;
+	top:0px; bottom:0;
+    left: 0;
+    right:0;
+	font-size:15px;
+	z-index: 1;
+
+}
+
+
+.menu.transparent {
+    visibility: hidden;
+	
+}
+
+.menu.current {
+    visibility: visible;
+	
+}
+
+
+.slideleftin{
+transition:left 0.5s ease;
+-webkit-transition:left 0.5s ease; /* Safari */
+
+
+}
+
+
+.slideleftout{
+transition:margin-left 0.5s ease;
+-webkit-transition:margin-left 0.5s ease; /* Safari */
+
+
+}
+
+
+.leftoutright {
+    left:300px;
+}
+
+.leftoutleft {
+    margin-left:-300px;
+}
+
+.leftnull {
+    left:0px;
+    margin-left:0px;
+   
+  
+}
+
+.width300 {
+ width: 300px;
+  
+}
+
+
+
+ /*   
+.menu.current {
+		left: 0px;
+		width: 300px;
+		
+		
+}
+
+.menu.slideinright {
+		left: 0px;
+		width: 300px;
+		-webkit-transition:left 2s
+
+}
+.menu.slideinleft {
+		left: 0px;
+		width: 300px;
+		-webkit-transition:left 2s
+
+}
+
+.menu.leftside {
+		left: -300px;
+
+}
+
+.menu.transparent {
+	
+	width: 0px;
+	left: 300px;
+	z-index: 1;
+	
+}
+
+*/
+
+.menu ul li  {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.menu ul li a.current {
+        background-color: lightgray;
+}
+       
+
+.menu ul li a {
+    text-decoration: none;
+    display: block;
+    color: black;
+    white-space: nowrap;
+    padding-left: 10px;
+
+}
+
+
+
+    
+#sidebar .slideleft {
+		left: 0px;
+		width: 300px;
+	-webkit-transition: left 2s ease;
+}
+
+
+#sidebar .slideright {
+
+		left: 0;
+			
+}
+
+
+
+#sidebar.portrait{
+
+width: 0px;
+ border-right: 1px solid black;
+z-index: 100;
+transition:width 0.5s;
+-webkit-transition:width 0.5s; /* Safari */
+
+     	background-color: white;
+			
+}
+
+#sidebar.portraitslideleft {
+	width: 300px;
+
+}
+
+#content.portrait {
+
+position: absolute;
+left: 0px;
+width: 100%;
+border-left: 0px;
+z-index: 20;
+
+			
+}
+.portaitheader {
+    display: none;
+}
+
+.overlay_wait {
+	display: none; /* modified via jQuery */
+	/* width + height set via jQuery */
+	/* position: absolute; */
+	position: fixed;
+	z-index: 110;
+	-webkit-box-sizing: content-box;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+
+.overlay_wait .inner {
+    position:absolute;
+    height:100px;
+    width:200px;
+    margin:-50px 0px 0px -100px;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+
+.overlay_wait .inner img {
+ margin: 10px;
+}

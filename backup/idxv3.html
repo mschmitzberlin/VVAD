@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+    <head>
+        
+        	<meta charset="UTF-8">
+	<meta robots="noindex,nofollow,noarchive">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="cache-control" content="no-store">
+	<meta http-equiv="cache-control" content="must-revalidate">
+	<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <meta http-equiv="expires" content="0">
+	<meta http-equiv="expires" content="Tue, 01 Jan 2013 12:00:00 GMT"> 
+        <title>i4pos2go</title>
+         <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height"/>
+         <link rel="stylesheet" type="text/css" media="screen" href="stylev3.css">
+     <script src="js/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+     	<script type="application/javascript" src="js/iscroll.js"></script>
+        <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+        	<script src="js/md5-min.js" type="text/javascript" charset="utf-8"></script>	
+	
+            <script src="js/application_nv.js" type="text/javascript" charset="utf-8"></script>
+	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="http://code.google.com/apis/gears/gears_init.js"></script>
+	
+        <style>
+
+
+
+#pdfcontainer {
+	position: fixed;
+    top:150px;
+    bottom:0;
+    left:310px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	height: 100%;
+
+    width: 100%
+	}
+#pdfKProfil {
+    margin: 0;
+    padding: 0;
+	width: 100%;
+	height: 3300px;
+   -webkit-transform: scale(1.4);
+   }
+
+         
+ 
+</style>
+<script type="text/javascript">
+
+var scrollmainmenu, scrollkundendatenmenu, scrollumfeldanalysemenu, scrollformsmenu, scrollformvalsmenu
+var scrollwindowsuche, scrollwindowkundenuebersicht, scrollwindowkundenprofil, scrollwindowshopdetails, scrollwindowwindowvkwm;
+var scrollwindowtopztg, scrollwindowtopztschr, scrollwindowsortztg, scrollwindowsortztschr;
+var scrollwindowfruehremi, scrollwindowforms, scrollwindowumfeldanalyse, scrollwindownlferfassen;
+var pdfcontainer;
+
+function loaded() {
+   var focusedInput = false;
+   
+   // Menüs
+   //scrollloginmenu = new iScroll('scrollloginmenu');
+   scrollmainmenu = new iScroll('scrollmainmenu');
+   scrollkundendatenmenu = new iScroll('scrollkundendatenmenu');   
+  scrollumfeldanalysemenu = new iScroll('scrollumfeldanalysemenu');
+   scrollformsmenu = new iScroll('scrollformsmenu');
+  scrollformvalsmenu = new iScroll('scrollformvalsmenu');
+   
+   //page2 = new iScroll('page2');
+   scrollwindowsuche = new iScroll('scrollwindowsuche');
+    scrollwindowkundenuebersicht = new iScroll('scrollwindowkundenuebersicht');
+	//scrollwindowkundenprofil  = new iScroll('scrollwindowkundenprofil');
+    scrollwindowshopdetails = new iScroll('scrollwindowshopdetails');
+    scrollwindowwindowvkwm = new iScroll('scrollwindowwindowvkwm');
+
+scrollwindowtopztg = new iScroll('scrollwindowtopztg');
+scrollwindowtopztschr = new iScroll('scrollwindowtopztschr');
+scrollwindowsortztg = new iScroll('scrollwindowsortztg');
+scrollwindowsortztschr = new iScroll('scrollwindowsortztschr');
+scrollwindowfruehremi = new iScroll('scrollwindowfruehremi');
+	
+	scrollwindowforms = new iScroll('scrollwindowforms');
+scrollwindownlferfassen = new iScroll('scrollwindownlferfassen');
+//pdfcontainer  = new iScroll('pdfcontainer');
+
+
+	
+	
+   	 scrollmainmenu.options.onBeforeScrollStart = function(e) {                
+        var target = e.target;
+
+        while (target.nodeType != 1) target = target.parentNode;
+        if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA'){
+            e.preventDefault();
+        }
+   }
+   //page2.options.onBeforeScrollStart = function(e) {                
+   //     var target = e.target;
+   //
+   //     while (target.nodeType != 1) target = target.parentNode;
+   //     if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA'){
+   //         e.preventDefault();
+   //     }
+   //}
+   
+      scrollwindowsuche.options.onBeforeScrollStart = function(e) {                
+        var target = e.target;
+        while (target.nodeType != 1) target = target.parentNode;
+        if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA'){
+            e.preventDefault();
+        }
+   } 
+
+   scrollwindowforms.options.onBeforeScrollStart = function(e) {                
+        var target = e.target;
+        while (target.nodeType != 1) target = target.parentNode;
+        if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA'){
+            e.preventDefault();
+        }
+   }
+
+   scrollwindownlferfassen.options.onBeforeScrollStart = function(e) {                
+        var target = e.target;
+        while (target.nodeType != 1) target = target.parentNode;
+        if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA'){
+            e.preventDefault();
+        }
+   }    
+   
+//var pageScroll= new iScroll($('page')[0],{
+//      onBeforeScrollStart: function (e) {
+//          var nodeType = e.explicitOriginalTarget ? e.explicitOriginalTarget.nodeName.toLowerCase():(e.target ? e.target.nodeName.toLowerCase():'');             
+//          if(nodeType !='select' && nodeType !='option' && nodeType !='input' && nodeType!='textarea'&& nodeType!='canvas') { e.preventDefault();  }            
+//        },
+//         onScrollEnd: function (e) {
+//           if (focusedInput !== "") focusedInput.trigger('blur');
+//        }          
+//                            
+//     });
+
+
+
+
+//$('input, textarea, select').on('focus', function () {
+//    console.log("input focus");
+//    $('footer').css({'position':'absolute'});
+//        focusedInput = $(this);refreshPageScroll(0);
+//  }).blur(function () { 
+//    console.log("input blur");
+//      $('footer').css({'position':'fixed'});
+//	//	refreshPageScroll(100) ;
+//});
+
+
+
+ //refresh scroller
+function refreshPageScroll(mseconds) {
+ var timedelay = mseconds ? mseconds : 0;  
+ setTimeout(function () {
+    pageScroll.refresh();
+
+    }, timedelay);
+}
+    
+
+	
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', loaded, false);
+
+
+
+
+
+</script>
+</head>
+<body>	
+<!--	Menüs-->
+	<div id="sidebar">
+		<!--Login -->
+		<div id="searchmenu" class="menu current">
+			<header>
+				<a class="back landscapeheader" href="#logoutmenu">< Abmelden</a>
+				<a class="portaitheader" href="#logoutmenu">< Abmelden</a>
+			</header>
+			<div id="scrollsearchmenu" class="scroll sidebarsection">
+				<ul class="navScroller">
+					<li><a href="#windowlogout">Abmelden</a></li>
+				</ul>
+			</div>
+			
+	   </div>     
+<!--		Hauptmenu	-->	
+		<div id="mainmenu" class="menu transparent">
+			<header>
+
+				
+				<a class="back landscapeheader" href="#searchmenu">< Suche</a>
+			    <a class="portaitheader" href="#mainmenu">Hauptmenü</a>
+				<span>Hauptmenü</span>
+		</header>
+			<div id="scrollmainmenu" class="scroll sidebarsection">
+				<ul class="navScroller">
+					<li><a href="#windowkundenuebersicht">Kundenübersicht</a></li>
+					<li><a class="submenu" href="#kundendatenmenu">Kundendaten</a></li>
+					<li><a href="#windowumfeldanalyse">EH-Umfeldanalyse</a></li>
+					<li><a href="#windowfruehremi">Hitliste Frühremissionen</a></li>
+					<li><a class="submenu" href="#topsellermenu">Übersicht Topseller</a></li>
+					<li><a class="submenu" href="#sortimentmenu">Sortimentsanalyse</a></li>
+					<li><a href="#windownlferfassen">Nachlieferung erfassen</a></li>
+					<li><a class="submenu" href="#formsmenu">Reports</a></li>
+				</ul>
+			</div>
+		</div>
+
+<!-- Submenü Kundendaten	-->			
+		<div id="kundendatenmenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#mainmenu">< Hauptmenü</a>
+				<a class="portaitheader" href="#">Kundendaten</a>
+				<span>Kundendaten</span>
+			</header>
+			<div  id="scrollkundendatenmenu"  class="scroll sidebarsection">
+				<ul class="navScroller">
+					<li><a href="#windowkundenprofil">Kundenprofil</a></li>
+					<li><a class="submenu" href="#ehastramenu">Ehastra</a></li>					
+					<li><a href="#windowzeiten">Belieferungs / Öffnungszeiten</a></li>
+				</ul>
+			</div>   
+		</div>
+
+<!-- Submenü Ehastra	-->			
+		<div id="ehastramenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#kundendatenmenu">< Kundendaten</a>
+				<a class="portaitheader" href="#">Ehastra</a>
+				<span>Ehastra</span>				
+			</header>
+			<div  id="scrollehastramenu"  class="scroll sidebarsection">
+				<ul class="navScroller">
+					<li><a href="#windowshopdetails">Shop Details</a></li>
+					<li><a href="#windowvkwm">VK Hilfen / WM</a></li>
+					<li><a href="#windowregale">Regale / Daten</a></li>
+				</ul>
+			</div>   
+		</div>
+				
+
+<!-- Submenü Umfeldanalyse - dynamisch	-->			
+		<div id="umfeldanalysemenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#mainmenu">< Hauptmenü</a>
+				<a class="portaitheader" href="#">Umfeld - Händler</a>				
+				<span>Umfeld - Händler</span>				
+			</header>
+			<div  id="scrollumfeldanalysemenu"  class="scroll sidebarsection">
+				<ul class="navScroller" id="umfeldul">
+				</ul>
+			</div>   
+		</div> 		
+
+		
+
+
+<!-- Submenü Topseller	-->			
+		<div id="topsellermenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#mainmenu">< Hauptmenü</a>				
+				<a class="portaitheader" href="#">Topseller</a>
+				<span>Topseller</span>	
+			</header>
+			<div  id="scrolltopsellermenu" class="scroll sidebarsection">
+				<ul class="navScroller">
+					<li><a href="#windowtopztg">Topseller Zeitungen</a></li>
+					<li><a href="#windowtopztschr">Topseller Zeitschriften</a></li>
+				</ul>
+			</div>   
+		</div>
+		
+<!-- Submenü Sortanalyse	-->			
+		<div id="sortimentmenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#mainmenu">< Hauptmenü</a>
+			    <a class="portaitheader" href="#mainmenu">Sortimentsanalyse</a>
+				<span>Sortimentsanalyse</span> 
+			</header>
+			<div  id="scrollsortimentmenu" class="scroll sidebarsection">
+				<ul class="navScroller">
+					<li><a href="#windowsortztg">Sortimentsanalyse Zeitungen</a></li>
+					<li><a href="#windowsortztschr">Sortimentsanalyse Zeitschriften</a></li>				</ul>
+			</div>   
+		</div>			
+
+<!-- Submenü Forms - dynamisch	-->			
+		<div id="formsmenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#mainmenu">< Hauptmenü</a>
+				<a class="portaitheader" href="#">Reports</a>
+				<span>Reports</span>  
+			</header>
+			<div  id="scrollformsmenu"  class="scroll sidebarsection">
+				<ul class="navScroller" id="formsul">
+				</ul>
+			</div>   
+		</div>
+		
+		
+<!-- Submenü Formvals - dynamisch	-->			
+		<div id="formvalsmenu" class="menu transparent">
+			<header>
+				<a class="back landscapeheader" href="#formsmenu">< Reports</a>
+				<a class="portaitheader" href="#">Erfassungen</a>
+				<span>Erfassungen</span>  
+			</header>
+			<div  id="scrollformvalsmenu"  class="scroll sidebarsection">
+				<ul class="navScroller" id="formsvalul">
+				</ul>
+			</div>   
+		</div> 			
+				
+		
+		
+	</div> <!-- sidebar-->
+
+	<div id="content">
+
+    
+    <div class="window transparent" id="windowlogin">
+        <header>
+            Anmelden
+        </header>
+            <div id="page2x" class="windowsection">
+
+    		<article id="loginScroller">
+    			<div id="contentScroller">
+                    bitte Anmelden
+                    <p class="center"><button id="btnLogin">Anmelden</button></p>
+
+     			</div>
+        	</article>
+            </div>
+    </div>
+		<!--Suche-->
+		<div class="window current" id="windowsuche">
+			
+			<header>
+			  Suche
+			</header>
+
+			<div id="scrollwindowsuche" class="windowsection">
+				<article id="sucheScroller">
+					<div class="container">
+						<p class="center">Willkommen.</p>
+						<input type="text" id="txtsearchCustomer">
+						<p class="center">Bitte geben Sie Kundennummer, Name oder Strasse ein.</p>
+						<ul id = "search_list" class="edit rounded" style="display: none"></ul>
+						<p class="center"><button id="btnSearchCustomer">Finden</button></p>
+					</div>
+					<div id = "suchecont" class="container">
+						<ul id = "searchul"></ul>
+					</div>
+					
+				</article>
+			</div>
+		</div>
+		
+		<!--Kundenübersicht-->
+		<div class="window transparent" id="windowkundenuebersicht">
+			<header>
+				Kundenübersicht
+			</header>
+			<div id="scrollwindowkundenuebersicht" class="windowsection">
+				<article class="scroll-wrap">
+								
+												          <input type="button" id="setls" value="landscape">
+          <input type="button" id="setpr" value="potrait">
+			
+			
+					<div class="container">
+
+						<table>
+							<tr>
+								<td>
+									<span name="var_vorname" class="var_vorname"></span>
+									<span name="var_nachname" class="var_nachname"></span></br>									
+									<span name="var_strasse" class="var_strasse"></span></br>
+									<span name="var_plz" class="var_plz"></span>
+									<span name="var_ort" class="var_ort"></span>
+								</td>
+								<td>
+									E-Mail: <span name="var_email" class="var_email"></span></br>
+									Tel 1: <span name="var_telefon" class="var_telefon"></span></br>
+									Tel 2: <span name="var_telefon2" class="var_telefon2"></span></br>									
+								</td>
+								<td>
+									<span class="userimg alignleft" name="var_pict_vkst_in"></span>
+								</td>
+							
+								<td>
+									<span class="userimg alignleft" name="var_pict_vkst_out"></span>
+								</td>								
+							</tr>
+							<tr>
+								<td colspan="4"><span name="var_information"></span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="container">
+						<span name="var_kundenuebersicht"></span>
+					</div>
+				</article>
+			</div>
+		</div>
+		
+		<!--Kundenprofil-->		
+		<div class="window transparent" id="windowkundenprofil">
+			<header>
+				Kundenprofil
+			</header>
+			<div id="scrollwindowkundenprofil" class="windowsection">
+				<article class="scroll-wrap">
+					<div class="container">
+						<button id="btnPdfMinus">-</button>
+						<button id="btnPdfPlus">+</button>
+					</div>
+					<div id="pdfcontainer">
+						<embed id="pdfKProfil" src="documents/10007_K_PROFIL.PDF">
+					</div>
+				</article>
+			</div>
+		</div>		
+
+		<!--Belieferungs / Öffnungszeiten-->		
+		<div class="window transparent" id="windowzeiten">
+			<header>Belieferungs / Öffnungszeiten</header>
+			<div id="scrollwindowwindowzeiten" class="windowsection">
+				<article class="scroll-wrap">
+					<div class="container">
+						<span name="var_knd_alz"></span>						
+					</div>
+					<div class="container">
+						<span name="var_open"></span>						
+					</div>
+				</article>
+			</div>
+		</div>	
+
+		<!--Shop Details-->		
+		<div class="window transparent" id="windowshopdetails">
+			<header>
+				Ehastra
+			</header>
+			<div id="scrollwindowshopdetails" class="windowsection">
+				<article class="scroll-wrap">
+					<div class="container">
+           <table class="simple">
+                <thead class="toggleblue">
+                    <tr>
+                        <th class="tl hideable">Shop Details</th>
+                    <th></th>                        
+                    </tr>
+                    
+                </thead>
+                <tbody class="hide">
+                <tr>
+                    <td class= "th tl">BM Gesamt</td>
+                    <td class="tr"><span name="var_gesbm"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Regalmeter Gesamt</td>
+                    <td class="tr"><span name="var_regal_m"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">BM VSR</td>
+                    <td class="tr"><span name="var_vsr_stk_bm"></span></td>
+                </tr>                
+                <tr>
+                    <td class= "th tl">BM Schuppen</td>
+                    <td class= "tr"><span name="var_schupp_bm"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Anz. Schuppen</td>
+                    <td class= "tr"><span name="var_schuppen"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">BM Sonstige</td>
+                    <td class= "tr"><span name="var_sonst_bm"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Stapelplätze Regal</td>
+                    <td class= "tr"><span name="var_vsr_stk_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Stapelplätze Sonstige</td>
+                    <td class= "tr"><span name="var_sonst_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Struktur Regal</td>
+                    <td class= "tr"><span name="var_f_gest"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Theke</td>
+                    <td class= "tr"><span name="var_theke"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Schaufenster</td>
+                    <td class= "tr"><span name="var_s_fenster"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Scanner</td>
+                    <td class= "tr"><span name="var_scanner"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">qm2 Verkaufsraum</td>
+                    <td class= "tr"><span name="var_ges_qm"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Shop in Shop</td>
+                    <td class= "tr"><span name="var_shop"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Anzahl Grosso</td>
+                    <td class= "tr"><span name="var_anz_grosso"></span></td>
+                </tr>                  
+                <tr>
+                    <td class= "th tl">Art Verkaufsstelle</td>
+                    <td class= "tr"><span name="var_vkst"></span></td>
+                </tr>                  
+                </tbody>
+            </table>            
+						
+					</div>
+				</article>
+			</div>
+		</div>
+
+
+		<!--VK WM-->		
+		<div class="window transparent" id="windowvkwm">
+			<header>
+				VK Hilfen / WM
+			</header>
+			<div id="scrollwindowwindowvkwm" class="windowsection">
+				<article class="scroll-wrap">
+					<div class="container">
+<table class="simple">
+                <thead class="toggleblue">
+                    <tr>
+                        <th class="tl hideable">Verkaufshilfen</th>
+                    <th></th>                        
+                    </tr>
+                    
+                </thead>
+                <tbody class="hide">
+                <tr>
+                    <td class= "th tl">Zeitungen Titel</td>
+                    <td class="tr"><span name="var_ztg_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Zeitschriften Titel</td>
+                    <td class="tr"><span name="var_zsch_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Romane/Rätsel/TH Titel</td>
+                    <td class="tr"><span name="var_rrth_vs"></span></td>
+                </tr>                
+                <tr>
+                    <td class= "th tl">Romane/Rätsel/TH Expl.</td>
+                    <td class= "tr"><span name="var_rrth_kap"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Comic Titel</td>
+                    <td class= "tr"><span name="var_co_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Comic Expl.</td>
+                    <td class= "tr"><span name="var_co_kap"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Tabu Titel</td>
+                    <td class= "tr"><span name="var_tb_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Tabu Expl.</td>
+                    <td class= "tr"><span name="var_tb_kap"></span></td>
+                </tr>                
+                <tr>
+                    <td class= "th tl">SB Display</td>
+                    <td class= "tr"><span name="var_sbld_prs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">Zweitplatzierung Titel</td>
+                    <td class= "tr"><span name="var_zsch2_vs"></span></td>
+                </tr>
+                </tbody>
+            </table>        						
+					</div>
+					<div class="container">
+            <table class="simple">
+                <thead class="toggleblue">
+                    <tr>
+                        <th class="tl hideable">Werbemittel</th>
+                    <th></th>                        
+                    </tr>
+                    
+                </thead>
+                <tbody class="hide">
+                <tr>
+                    <td class= "th tl">BILD AT</td>
+                    <td class="tr"><span name="var_ztg_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">BM AT</td>
+                    <td class="tr"><span name="var_zsch_vs"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">BILDmobil AT</td>
+                    <td class="tr"><span name="var_rrth_vs"></span></td>
+                </tr>                
+                <tr>
+                    <td class= "th tl">Tüten</td>
+                    <td class= "tr"><span name="var_rrth_kap"></span></td>
+                </tr>
+                <tr>
+                    <td class= "th tl">BILD Fahne</td>
+                    <td class= "tr"><span name="var_co_vs"></span></td>
+                </tr>
+                </tbody>
+            </table>						
+						
+						
+					</div>
+				</article>
+			</div>
+		</div>
+		
+		<!--Regale / Daten-->		
+		<div class="window transparent" id="windowregale">
+			<header>
+				Regale / Daten
+			</header>
+			<div id="scrollwindowregale" class="windowsection">
+				<article class="scroll-wrap">
+					<div class="container">
+            <table class="simple">
+                <thead class="toggleblue hideable">
+                    <tr>
+                        <th class="tl">Daten</th>
+                        <th>Umsatz €</th>
+                        <th>U-Anteil %</th>
+                        <th>Remi %</th>
+                        <th>Sort.-Anteil % Ist</th>
+                    </tr>
+                    
+                </thead>
+                <tbody class="hide">
+                <tr>
+                    <td class= "tl">Gesamt</td>
+                    <td class="tr"><span name="var_wo_ums_ges"></span></td>
+                    <td class="tr"></td>
+                    <td class="tr"></td>
+                    <td class="tr"></td>
+                </tr>
+                <tr>
+                    <td class= "tl">V.V.</td>
+                    <td class="tr"><span name="var_wo_ums_vv"></span></td>
+                    <td class="tr"><span name="var_wo_ums_prz_vv"></span></td>
+                    <td class="tr"><span name="var_remi_prz_vv"></span></td>
+                    <td class="tr"><span name="var_sort_anteil_vv"></span></td>
+                </tr>
+                <tr>
+                    <td class= "tl">bpv</td>
+                    <td class="tr"><span name="var_wo_ums_bpv"></span></td>
+                    <td class="tr"><span name="var_wo_ums_prz_bpv"></span></td>
+                    <td class="tr"><span name="var_remi_prz_bpv"></span></td>
+                    <td class="tr"><span name="var_sort_anteil_bpv"></span></td>
+                </tr>                
+                </tbody>
+            </table>						
+					</div>
+					<div class="container">
+            <table class="simple">
+                <thead class="toggleblue hideable">
+                    <tr>
+                        <th class="tl">Regale</th>
+                        <th>KZ: <span name="var_art_ziel_erm"></span></th>
+                        <th>Titel BM ist</th>
+                        <th>Titel BM Soll</th>
+                    </tr>
+                    
+                </thead>
+                <tbody class="hide">
+                <tr>
+                    <td class= "tl">Gesamt BM</td>
+                    <td class="tr"><span name="var_gesbm"></span></td>
+                    <td class="tr"><span name="var_bm_ist_ges"></span></td>
+                    <td class="tr"><span name="var_bm_soll_ziel"></span></td>
+                </tr>
+                <tr>
+                    <td class= "tl">V.V.</td>
+                    <td class="tr"><span name="var_ziel_anteil_vv"></span></td>
+                    <td class="tr"><span name="var_bm_ist_vv"></span></td>
+                    <td class="tr"><span name="var_bm_soll_ziel"></span></td>
+                </tr>
+                <tr>
+                    <td class= "tl">bpv</td>
+                    <td class="tr"><span name="var_ziel_anteil_bpv"></span></td>
+                    <td class="tr"><span name="var_bm_ist_bpv"></span></td>
+                    <td class="tr"><span name="var_bm_soll_ziel"></span></td>
+                </tr>                
+                </tbody>
+            </table>						
+						
+						
+						
+					</div>
+					
+				</article>
+			</div>
+		</div>
+		
+
+ <!--  Frühremis-->			
+		
+		<div class="window transparent" id="windowfruehremi">
+			<header>Hitliste Frühremissionen</header>
+			<div id="scrollwindowfruehremi" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container">
+							<p>Komplett; nur Verkaufsverluste</p>
+							<span name="var_f_remi_komplett"></span>
+						</div>
+						<div class="container">
+							<p>Ausverkauf; nur Verkaufsverluste</p>
+							<span name="var_f_remi_avk"></span>
+						</div>						
+				</article>
+			</div>
+		</div>			
+
+
+ <!--  EH-Umfeldanalyse-->			
+		
+		<div class="window transparent" id="windowumfeldanalyse">
+			<header>EH - Umfeldanalyse</header>
+			<div id="scrollwindowumfeldanalyse" class="windowsection">
+				<article lass="scroll-wrap">
+	
+						<div class="container">
+							<p class="center"><button id="btnMap">Karte anzeigen</button></p>
+							<div id="map_canvas"> 
+							</div>
+						</div>
+				</article>
+			</div>
+		</div>			
+
+<!--  Topseller	Zeitung-->			
+		
+		<div class="window transparent" id="windowtopztg">
+			<header>Topseller Zeitungen</header>
+			<div id="scrollwindowtopztg" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container">
+							<table class="toggle"
+								<tr>
+									<td>Umsatz / Absatz anzeigen / verbergen</td>
+									<td>
+										<input type="checkbox" name="toggle" id="toggle1" class="togglerow" value="7,8">
+										<label for="toggle1"></label>
+									</td>
+								</tr>
+								
+							</table>
+						</div>					
+						<div class="container">
+							<span name="var_topseller_ztg"></span>
+						</div>
+				</article>
+			</div>
+		</div>	
+		
+ <!--  Topseller Zeitschr-->			
+		
+		<div class="window transparent" id="windowtopztschr">
+			<header>Topseller Zeitschriften</header>
+			<div id="scrollwindowtopztschr" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container">
+							<table class="toggle"
+								<tr>
+									<td>Umsatz / Absatz anzeigen / verbergen</td>
+									<td>
+										<input type="checkbox" name="toggle" id="toggle2" class="togglerow" value="7,8">
+										<label for="toggle2"></label>
+									</td>
+								</tr>
+								
+							</table>
+						</div>
+						<div class="container">
+							<span name="var_topseller_ztschr"></span>
+						</div>
+				</article>
+			</div>
+		</div>	
+
+
+ <!--  Sortanalyse Zeitung-->			
+		
+		<div class="window transparent" id="windowsortztg">
+			<header>Sortimentsanalyse Zeitungen</header>
+			<div id="scrollwindowsortztg" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container">
+							<span name="var_sortiment_ztg"></span>
+						</div>
+				</article>
+			</div>
+		</div>	
+
+
+ <!--  Sortanalyse Zeitschriften-->			
+		
+		<div class="window transparent" id="windowsortztschr">
+			<header>Sortimentsanalyse Zeitschriften</header>
+			<div id="scrollwindowsortztschr" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container">
+							<span name="var_topseller_ztschr"></span>
+						</div>
+				</article>
+			</div>
+		</div>
+		
+ <!--  Nachlieferung erfasssen-->			
+		
+		<div class="window transparent" id="windownlferfassen">
+			<header>Sortimentsanalyse Zeitschriften</header>
+			<div id="scrollwindownlferfassen" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container" id="nlfcont">
+						</div>
+				</article>
+			</div>
+		</div>
+		action
+
+		
+	
+		<!--forms dynamisch-->
+		<div class="window transparent" id="windowsforms">
+			<header>
+			</header>
+			<div id="scrollwindowforms" class="windowsection">
+				<article lass="scroll-wrap">
+						<div class="container" id="formscontainer">
+						</div>
+				</article>
+			</div>
+		</div>
+		
+		
+	</div> 
+    
+    
+</div>
+
+	<div class="overlay_wait">
+		<div class="inner">
+			<img src="img/wait.gif">
+		</div>
+	</div>
+	
+	<div class="overlay_img hidden">
+		<div class="popupimg">
+			<img src="">
+		</div>
+	</div>	
+   
+    
+    
+    </body>
+</html>
